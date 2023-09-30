@@ -12,3 +12,7 @@ def test_encode_alphabet():
 def test_encode_numbers():
     test_string = "1234567890"
     assert text_to_morse.encode(test_string) == ".---- ..--- ...-- ....- ..... -.... --... ---.. ----. -----"
+
+def test_encode_punctuation():
+    test_string = "&\'@)(:,=!.-*%+\"?/"
+    assert text_to_morse.encode(test_string) == ".-... .----. .--.-. -.--.- -.--. ---... --..-- -...- -.-.-- .-.-.- -....- -..- ----- -..-. ----- .-.-. .-..-. ..--.. -..-."

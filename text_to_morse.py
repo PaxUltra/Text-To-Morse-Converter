@@ -18,5 +18,3 @@ def encode(text: str) -> str:
     morse_output = ' '.join(morse_list)
 
     return morse_output
-
-print(encode("The quick brown fox jumps over a lazy dog"))
