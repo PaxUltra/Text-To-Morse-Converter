@@ -14,7 +14,7 @@ def test_encode_numbers():
     assert text_to_morse.encode(test_string) == ".---- ..--- ...-- ....- ..... -.... --... ---.. ----. -----"
 
 def test_encode_punctuation():
-    test_string = "&\'@)(:,=!.-*%+\"?/"
+    test_string = "&\'@)(:,=!.-X0/0+\"?/"
     assert text_to_morse.encode(test_string) == ".-... .----. .--.-. -.--.- -.--. ---... --..-- -...- -.-.-- .-.-.- -....- -..- ----- -..-. ----- .-.-. .-..-. ..--.. -..-."
 
 def test_decode_alphabet():
@@ -32,4 +32,4 @@ def test_decode_numbers():
 
 def test_decode_punctuation():
     test_code = ".-... .----. .--.-. -.--.- -.--. ---... --..-- -...- -.-.-- .-.-.- -....- -..- ----- -..-. ----- .-.-. .-..-. ..--.. -..-."
-    assert text_to_morse.decode(test_code) == "&\'@)(:,=!.-*%+\"?/"
+    assert text_to_morse.decode(test_code) == "&\'@)(:,=!.-X0/0+\"?/"
