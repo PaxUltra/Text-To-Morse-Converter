@@ -16,3 +16,20 @@ def test_encode_numbers():
 def test_encode_punctuation():
     test_string = "&\'@)(:,=!.-*%+\"?/"
     assert text_to_morse.encode(test_string) == ".-... .----. .--.-. -.--.- -.--. ---... --..-- -...- -.-.-- .-.-.- -....- -..- ----- -..-. ----- .-.-. .-..-. ..--.. -..-."
+
+def test_decode_alphabet():
+    test_code1 = "- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. ... / --- ...- . .-. / .- / .-.. .- --.. -.-- / -.. --- --."
+    test_code2 = "... .--. .... .. -. -..- / --- ..-. / -... .-.. .- -.-. -.- / --.- ..- .- .-. - --.. --..-- / .--- ..- -.. --. . / -- -.-- / ...- --- .--"
+    test_code3 = ".... --- .-- / ...- . -..- .. -. --. .-.. -.-- / --.- ..- .. -.-. -.- / -.. .- ..-. - / --.. . -... .-. .- ... / .--- ..- -- .--."
+
+    assert text_to_morse.decode(test_code1) == "THE QUICK BROWN FOX JUMPS OVER A LAZY DOG"
+    assert text_to_morse.decode(test_code2) == "SPHINX OF BLACK QUARTZ, JUDGE MY VOW"
+    assert text_to_morse.decode(test_code3) == "HOW VEXINGLY QUICK DAFT ZEBRAS JUMP"
+
+def test_decode_numbers():
+    test_code = "----- ----. ---.. --... -.... ..... ....- ...-- ..--- .----"
+    assert text_to_morse.decode(test_code) == "0987654321"
+
+def test_decode_punctuation():
+    test_code = ".-... .----. .--.-. -.--.- -.--. ---... --..-- -...- -.-.-- .-.-.- -....- -..- ----- -..-. ----- .-.-. .-..-. ..--.. -..-."
+    assert text_to_morse.decode(test_code) == "&\'@)(:,=!.-*%+\"?/"
