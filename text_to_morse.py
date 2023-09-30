@@ -14,9 +14,13 @@ def encode(text: str) -> str:
     Returns:
         morse_output(str):The Morse Code representation of text.
     '''
-    morse_list = [morse_dict[char] for char in text.upper()]
-    morse_output = ' '.join(morse_list)
-
+    try:
+        morse_list = [morse_dict[char] for char in text.upper()]
+    except KeyError as e:
+        raise KeyError(f"Cannot translate {e.args[0]}")
+    else:
+        morse_output = ' '.join(morse_list)
+    
     return morse_output
 
 def decode(code: str) -> str:
@@ -24,7 +28,7 @@ def decode(code: str) -> str:
     Converts a Morse Code string to an alphanumeric string.
 
     Parameters:
-        code(str):The string to convert. Must only consist of dots (.), dashes (-), and slashes (/).
+        code(str):The string to convert. Must only consist of dots (.), dashes (-), slashes (/), and spaces.
     
     Returns:
         text_output(str):The alphanumeric representation of code.
@@ -32,7 +36,11 @@ def decode(code: str) -> str:
     # Reverse the translation dictionary to make decoding the message easier.
     reverse_dict = {value: key for (key, value) in morse_dict.items()}
 
-    text_list = [reverse_dict[char_code] for char_code in code.split()]
-    text_output = ''.join(text_list)
+    try:
+        text_list = [reverse_dict[char_code] for char_code in code.split()]
+    except KeyError as e:
+        raise KeyError(f"Cannot translate {e.args[0]}")
+    else:
+        text_output = ''.join(text_list)
 
     return text_output

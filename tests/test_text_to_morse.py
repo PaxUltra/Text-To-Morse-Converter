@@ -1,3 +1,4 @@
+import pytest
 import text_to_morse
 
 def test_encode_alphabet():
@@ -17,6 +18,11 @@ def test_encode_punctuation():
     test_string = "&\'@)(:,=!.-X0/0+\"?/"
     assert text_to_morse.encode(test_string) == ".-... .----. .--.-. -.--.- -.--. ---... --..-- -...- -.-.-- .-.-.- -....- -..- ----- -..-. ----- .-.-. .-..-. ..--.. -..-."
 
+def test_encode_unsupported_char():
+    with pytest.raises(KeyError):
+        error_text = "Hello [ World"
+        text_to_morse.decode(error_text)
+
 def test_decode_alphabet():
     test_code1 = "- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. ... / --- ...- . .-. / .- / .-.. .- --.. -.-- / -.. --- --."
     test_code2 = "... .--. .... .. -. -..- / --- ..-. / -... .-.. .- -.-. -.- / --.- ..- .- .-. - --.. --..-- / .--- ..- -.. --. . / -- -.-- / ...- --- .--"
@@ -33,3 +39,8 @@ def test_decode_numbers():
 def test_decode_punctuation():
     test_code = ".-... .----. .--.-. -.--.- -.--. ---... --..-- -...- -.-.-- .-.-.- -....- -..- ----- -..-. ----- .-.-. .-..-. ..--.. -..-."
     assert text_to_morse.decode(test_code) == "&\'@)(:,=!.-X0/0+\"?/"
+
+def test_decode_unsupported_char():
+    with pytest.raises(KeyError):
+        error_code = ".... . .-.. .-.. --- > / .-- --- .-. .-.. -.."
+        text_to_morse.decode(error_code)
